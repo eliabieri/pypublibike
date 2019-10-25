@@ -18,7 +18,7 @@ from pypublibike import publibike, station
 pb = publibike.PubliBike()
 for station in pb.getStations():
 	station.refresh() # refresh load data of station
-	print(station.name)
+	print(station.numEbikes)
 ```
 
 Finding the nearest PubliBike station
@@ -48,3 +48,4 @@ Todo
 
  * API documentation
  * Error handling
+ * Add unittests

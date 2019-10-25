@@ -11,6 +11,8 @@ class Station:
         self._address = None
         self._zip = None
         self._city = None
+        self._numEbikes = None
+        self._numBikes = None
         if location is not None:
             self._location = location
 
@@ -23,6 +25,10 @@ class Station:
         self._address = r.json()["address"]
         self._zip = int(r.json()["zip"])
         self._city = r.json()["city"]
+        vehicles = [vehicle["type"]["name"]
+                    for vehicle in r.json()["vehicles"]]
+        self._numEbikes = sum(map(lambda name: name == "E-Bike", vehicles))
+        self._numBikes = len(vehicles) - self._numEbikes
 
     @property
     def name(self) -> str:
@@ -43,3 +49,11 @@ class Station:
     @property
     def city(self) -> str:
         return self._city
+    
+    @property
+    def numEbikes(self) -> int:
+        return self._numEbikes
+    
+    @property
+    def numBikes(self) -> int:
+        return self._numBikes
