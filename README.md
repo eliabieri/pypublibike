@@ -1,4 +1,3 @@
-===============================
 ⚡️🚲 pypublibike - A python wrapper round the PubliBike API
 ===============================
 
@@ -18,7 +17,7 @@ from pypublibike import publibike, station
 
 pb = publibike.PubliBike()
 for station in pb.getStations():
-	station.refresh() # refresh to get newest data
+	station.refresh() # refresh load data of station
 	print(station.name)
 ```
 
@@ -42,7 +41,7 @@ Getting Help
 
 * Open a issue on GitHub if you run into any problems
 
-* Contact me on `Twitter <https://twitter.com/eliabieri>`__
+* Contact me on [Twitter](https://twitter.com/eliabieri)
 
 Todo
 ------------
