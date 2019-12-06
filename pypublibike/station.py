@@ -13,22 +13,27 @@ class Station:
         self._city = None
         self._numEbikes = None
         self._numBikes = None
+        self._batteryLevels = []
         if location is not None:
             self._location = location
 
+    def _retrieveStation(self, id: int) -> str:
+        return requests.get(f'https://api.publibike.ch/v1/public/stations/{id}').json()
+
     def refresh(self):
-        r = requests.get(
-            'https://api.publibike.ch/v1/public/stations/{}'.format(self._id))
-        self._name = r.json()["name"]
+        response = self._retrieveStation(id)
+        self._name = response["name"]
         self._location = Location(
-            float(r.json()["latitude"]), float(r.json()["longitude"]))
-        self._address = r.json()["address"]
-        self._zip = int(r.json()["zip"])
-        self._city = r.json()["city"]
-        vehicles = [vehicle["type"]["name"]
-                    for vehicle in r.json()["vehicles"]]
-        self._numEbikes = sum(map(lambda name: name == "E-Bike", vehicles))
-        self._numBikes = len(vehicles) - self._numEbikes
+            float(response["latitude"]), float(response["longitude"]))
+        self._address = response["address"]
+        self._zip = int(response["zip"])
+        self._city = response["city"]
+        vehicles = response["vehicles"]
+        ebikes = list(filter(lambda vehicle: vehicle["type"]["name"] == "E-Bike", vehicles))
+        bikes = list(filter(lambda vehicle: vehicle["type"]["name"] == "Bike", vehicles))
+        self._numEbikes = len(ebikes)
+        self._numBikes = len(bikes)
+        self._batteryLevels = [ebike["ebike_battery_level"] for ebike in ebikes]
 
     @property
     def name(self) -> str:
@@ -49,11 +54,15 @@ class Station:
     @property
     def city(self) -> str:
         return self._city
-    
+
     @property
     def numEbikes(self) -> int:
         return self._numEbikes
-    
+
     @property
     def numBikes(self) -> int:
         return self._numBikes
+
+    @property
+    def batteryLevels(self) -> list:
+        return self._batteryLevels

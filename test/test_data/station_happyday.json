@@ -1,0 +1,30 @@
+{
+    "id": 421,
+    "latitude": 46.9229774,
+    "longitude": 7.4141121,
+    "state": {
+        "id": 1,
+        "name": "Active"
+    },
+    "name": "Köniz Zentrum",
+    "address": "Bläuacker 10",
+    "zip": "3098",
+    "city": "Köniz",
+    "vehicles": [{
+        "id": 2798,
+        "name": "501352",
+        "ebike_battery_level": 44.0,
+        "type": {
+            "id": 2,
+            "name": "E-Bike"
+        }
+    }],
+    "network": {
+        "id": 5,
+        "name": "Bern",
+        "background_img": null,
+        "logo_img": "https://www.publibike.ch/static-content/Netz5.svg",
+        "sponsors": []
+    },
+    "sponsors": []
+}
