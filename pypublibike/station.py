@@ -4,8 +4,8 @@ import requests
 
 class Station:
 
-    def __init__(self, id: int, location: Location = None):
-        self._id = id
+    def __init__(self, _id: int, location: Location = None):
+        self._id = _id
         self._name = None
         self._location = None
         self._address = None
@@ -17,11 +17,11 @@ class Station:
         if location is not None:
             self._location = location
 
-    def _retrieveStation(self, id: int) -> str:
-        return requests.get(f'https://api.publibike.ch/v1/public/stations/{id}').json()
+    def _retrieveStation(self, _id: int):
+        return requests.get(f'https://api.publibike.ch/v1/public/stations/{_id}').json()
 
     def refresh(self):
-        response = self._retrieveStation(id)
+        response = self._retrieveStation(self._id)
         self._name = response["name"]
         self._location = Location(
             float(response["latitude"]), float(response["longitude"]))
