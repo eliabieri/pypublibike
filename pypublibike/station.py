@@ -1,4 +1,5 @@
 from pypublibike.location import Location
+from pypublibike.vehicle import Vehicle
 import requests
 
 
@@ -14,6 +15,7 @@ class Station:
         self._numEbikes = None
         self._numBikes = None
         self._batteryLevels = []
+        self._vehicles = []
         if location is not None:
             self._location = location
 
@@ -34,6 +36,12 @@ class Station:
         self._numEbikes = len(ebikes)
         self._numBikes = len(bikes)
         self._batteryLevels = [ebike["ebike_battery_level"] for ebike in ebikes]
+        for bike in vehicles:
+            self._vehicles.append(Vehicle(bike["id"],bike["type"]["name"],self._id,self._location))
+        
+
+        
+
 
     @property
     def name(self) -> str:
@@ -66,3 +74,7 @@ class Station:
     @property
     def batteryLevels(self) -> list:
         return self._batteryLevels
+    
+    @property
+    def vehicles(self) ->list:
+       return self._vehicles
