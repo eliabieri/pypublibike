@@ -26,3 +26,29 @@ class PubliBike:
                 float(station["latitude"]), float(station["longitude"]))
             stations.append(Station(station["id"], location))
         return stations
+
+    def getBikes(self) -> list:
+        bikes = []
+        stations = self.getStations()
+        n = len(stations)
+        i = 0
+        print("Loading station data:")
+        for station in stations:
+            i=i+1
+            b = str(i)+"/"+str(n)
+            print (b, end="\r")
+            station.refresh()
+            bikes = bikes+station.vehicles
+            #3 debug lanes TODO REMOVE ME
+            if i>0:
+                break
+        print ("")
+        return bikes
+
+    def getBikeLocationById(self, targetId) -> Location:
+        ls = self.getBikes()
+        for bike in ls:
+            print(bike.id)
+            if bike.id == targetId:
+                return bike.location
+        return None
