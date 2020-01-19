@@ -39,9 +39,6 @@ class PubliBike:
             print (b, end="\r")
             station.refresh()
             bikes = bikes+station.vehicles
-            #3 debug lanes TODO REMOVE ME
-            if i>0:
-                break
         print ("")
         return bikes
 
