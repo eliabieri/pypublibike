@@ -17,8 +17,9 @@ from pypublibike import publibike, station
 
 pb = publibike.PubliBike()
 for station in pb.getStations():
-	station.refresh() # refresh load data of station
-	print(station.numEbikes)
+	station.refresh() 		# refresh load data of station
+	ebike = station.ebikes[0] 	# access the bikes/ebikes of the station
+	ebike.batteryLevel 		# access information about a bike
 ```
 
 Finding the nearest PubliBike station
