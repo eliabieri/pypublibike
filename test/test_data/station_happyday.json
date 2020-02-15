@@ -11,14 +11,24 @@
     "zip": "3098",
     "city": "Köniz",
     "vehicles": [{
-        "id": 2798,
-        "name": "501352",
-        "ebike_battery_level": 44.0,
-        "type": {
-            "id": 2,
-            "name": "E-Bike"
+            "id": 2798,
+            "name": "501352",
+            "ebike_battery_level": 44.0,
+            "type": {
+                "id": 2,
+                "name": "E-Bike"
+            }
+        },
+        {
+            "id": 3225,
+            "name": "102783",
+            "ebike_battery_level": null,
+            "type": {
+                "id": 1,
+                "name": "Bike"
+            }
         }
-    }],
+    ],
     "network": {
         "id": 5,
         "name": "Bern",

@@ -1,5 +1,6 @@
 from pypublibike.station import Station
 from pypublibike.location import Location
+from pypublibike.constants import Constants
 from haversine import haversine
 import requests
 
@@ -23,6 +24,6 @@ class PubliBike:
         r = requests.get("https://api.publibike.ch/v1/public/stations/")
         for station in r.json():
             location = Location(
-                float(station["latitude"]), float(station["longitude"]))
-            stations.append(Station(station["id"], location))
+                float(station[Constants.LATITUDE]), float(station[Constants.LONGITUDE]))
+            stations.append(Station(station[Constants.ID], location))
         return stations
