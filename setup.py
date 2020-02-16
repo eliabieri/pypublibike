@@ -14,7 +14,7 @@ URL = 'https://github.com/eliabieri/pypublibike'
 EMAIL = 'contact@eliabieri.com'
 AUTHOR = 'Elia Bieri'
 REQUIRES_PYTHON = '>=3.7.0'
-VERSION = '2.0.0'
+VERSION = '2.0.1'
 
 REQUIRED = [
     'haversine',

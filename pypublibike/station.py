@@ -32,6 +32,7 @@ class Station:
         self._city = response[Constants.CITY]
         vehicles = response[Constants.VEHICLES]
 
+        self._ebikes.clear()
         for entry in filter(lambda vehicle: vehicle[Constants.TYPE][Constants.NAME] == Constants.EBIKE, vehicles):
             batteryLevel = 0
             if None is not entry[Constants.BATTERY_LEVEL]:
@@ -39,6 +40,7 @@ class Station:
             self._ebikes.append(
                 Ebike(int(entry[Constants.NAME]), batteryLevel))
 
+        self._bikes.clear()
         for entry in filter(lambda vehicle: vehicle[Constants.TYPE][Constants.NAME] == Constants.BIKE, vehicles):
             self._bikes.append(Bike(int(entry[Constants.NAME])))
 
