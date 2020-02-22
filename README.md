@@ -1,6 +1,8 @@
 ⚡️🚲 pypublibike - A python wrapper round the PubliBike API
 ===============================
 
+[![PyPI version](https://badge.fury.io/py/pypublibike.svg)](https://badge.fury.io/py/pypublibike)
+
 pypublibike makes it easy to access the PubliBike API in your own Python projects.
 
 Quick Start
