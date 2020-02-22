@@ -1,103 +1,33 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# Always prefer setuptools over distutils
+from setuptools import setup, find_packages
+from os import path
 
-import io
-import os
-import sys
-from shutil import rmtree
+here = path.abspath(path.dirname(__file__))
 
-from setuptools import find_packages, setup, Command
-
-NAME = 'pypublibike'
-DESCRIPTION = 'A python wrapper around the PubliBike API'
-URL = 'https://github.com/eliabieri/pypublibike'
-EMAIL = 'contact@eliabieri.com'
-AUTHOR = 'Elia Bieri'
-REQUIRES_PYTHON = '>=3.7.0'
-VERSION = '2.0.1'
-
-REQUIRED = [
-    'haversine',
-    'requests'
-]
-
-here = os.path.abspath(os.path.dirname(__file__))
-
-try:
-    with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
-        long_description = '\n' + f.read()
-except FileNotFoundError:
-    long_description = DESCRIPTION
-
-about = {}
-if not VERSION:
-    project_slug = NAME.lower().replace("-", "_").replace(" ", "_")
-    with open(os.path.join(here, project_slug, '__version__.py')) as f:
-        exec(f.read(), about)
-else:
-    about['__version__'] = VERSION
-
-
-class UploadCommand(Command):
-    """Support setup.py upload."""
-
-    description = 'Build and publish the package.'
-    user_options = []
-
-    @staticmethod
-    def status(s):
-        """Prints things in bold."""
-        print('\033[1m{0}\033[0m'.format(s))
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        try:
-            self.status('Removing previous builds…')
-            rmtree(os.path.join(here, 'dist'))
-        except OSError:
-            pass
-
-        self.status('Building Source and Wheel (universal) distribution…')
-        os.system(
-            '{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
-
-        self.status('Uploading the package to PyPI via Twine…')
-        os.system(
-            'twine upload dist/*')
-
-        sys.exit()
-
+# Get the long description from the README file
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
-    name=NAME,
-    version=about['__version__'],
-    description=DESCRIPTION,
+    name='pypublibike',
+    version='2.0.1',
+    description='A python wrapper around the PubliBike API',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    author=AUTHOR,
-    author_email=EMAIL,
-    python_requires=REQUIRES_PYTHON,
-    url=URL,
+    url='https://github.com/eliabieri/pypublibike',
+    author='Elia Bieri',
+    author_email='bieri.elia@gmail.com',
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
+        'Topic :: Internet',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+    ],
+
     packages=find_packages(
         exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-
-    install_requires=REQUIRED,
-    include_package_data=True,
-    license='MIT',
-    classifiers=[
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy'
-    ],
-    cmdclass={
-        'upload': UploadCommand,
-    },
+    python_requires='>=3.7',
+    install_requires=['requests', 'haversine'],
 )
