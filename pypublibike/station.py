@@ -9,6 +9,7 @@ class Station:
 
     def __init__(self, stationId: int, location: Location = None):
         self._stationId = stationId
+        self._stationActive = None
         self._name = None
         self._location = None
         self._address = None
@@ -24,6 +25,7 @@ class Station:
 
     def refresh(self):
         response = self._retrieveStation(self._stationId)
+        self._active = Constants.ACTIVE == response[Constants.STATE][Constants.NAME]
         self._name = response[Constants.NAME]
         self._location = Location(
             float(response[Constants.LATITUDE]), float(response[Constants.LONGITUDE]))
@@ -47,6 +49,10 @@ class Station:
     @property
     def stationId(self) -> int:
         return self._stationId
+
+    @property
+    def active(self) -> Optional[bool]:
+        return self._active
 
     @property
     def name(self) -> Optional[str]:

@@ -106,3 +106,4 @@ venv.bak/
 # general
 .DS_Store
 .vscode
+.pyre_configuration

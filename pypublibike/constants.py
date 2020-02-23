@@ -1,6 +1,8 @@
 
 class Constants():
     ID = "id"
+    STATE = "state"
+    ACTIVE = "Active"
     NAME = "name"
     LATITUDE = "latitude"
     LONGITUDE = "longitude"
