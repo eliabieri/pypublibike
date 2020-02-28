@@ -10,6 +10,7 @@ class Station:
     def __init__(self, stationId: int, location: Location = None):
         self._stationId = stationId
         self._stationActive = None
+        self._active = None
         self._name = None
         self._location = None
         self._address = None
