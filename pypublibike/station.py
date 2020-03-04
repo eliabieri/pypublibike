@@ -21,6 +21,9 @@ class Station:
         if location is not None:
             self._location = location
 
+    def __repr__(self):
+        return f"Station '{self._name}': Bikes = {len(self._bikes)} Ebikes = {len(self._ebikes)}"
+
     def _retrieveStation(self, _stationId: int):
         return requests.get(f'https://api.publibike.ch/v1/public/stations/{_stationId}').json()
 
