@@ -19,7 +19,8 @@ class PubliBike:
                 distanceNearestStation = distance
         return nearestStation
 
-    def getStations(self) -> list:
+    @staticmethod
+    def getStations() -> list:
         stations = []
         r = requests.get("https://api.publibike.ch/v1/public/stations/")
         for station in r.json():

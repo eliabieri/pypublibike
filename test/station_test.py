@@ -7,7 +7,8 @@ from pypublibike.location import Location
 
 class TestStation(unittest.TestCase):
 
-    def getSampleJson(self, _unused):
+    @staticmethod
+    def getSampleJson(_unused):
         with open(os.path.join("test", "test_data", "station_happyday.json")) as f:
             sampleJson = f.read()
             return json.loads(sampleJson)
@@ -29,7 +30,8 @@ class TestStation(unittest.TestCase):
         self.assertEqual(station.location, Location(46.9229774, 7.4141121))
         self.assertEqual(station.stationId, stationId)
 
-    def test_live(self):
+    @staticmethod
+    def test_live():
         station = Station(421)
         station.refresh()
 
