@@ -24,7 +24,8 @@ class Station:
     def __repr__(self):
         return f"Station '{self._name}': Bikes = {len(self._bikes)} Ebikes = {len(self._ebikes)}"
 
-    def _retrieveStation(self, _stationId: int):
+    @staticmethod
+    def _retrieveStation(_stationId: int):
         return requests.get(f'https://api.publibike.ch/v1/public/stations/{_stationId}').json()
 
     def refresh(self):
