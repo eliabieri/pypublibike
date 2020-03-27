@@ -55,4 +55,3 @@ Todo
 
  * API documentation
  * Error handling
- * Add unittests
