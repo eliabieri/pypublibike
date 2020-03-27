@@ -5,6 +5,8 @@
 
 [![PyPI version](https://badge.fury.io/py/pypublibike.svg)](https://badge.fury.io/py/pypublibike)
 
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/eliabieri/pypublibike/?ref=repository-badge)
+
 pypublibike makes it easy to access the PubliBike API in your own Python projects.
 
 Quick Start
