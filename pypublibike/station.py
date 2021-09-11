@@ -1,6 +1,6 @@
 from pypublibike.location import Location
 from pypublibike.bike import Bike, Ebike
-from pypublibike.constants import Constants
+from pypublibike.constants import Constants, API_BASE_URL
 import requests
 from typing import Optional, List
 
@@ -26,7 +26,7 @@ class Station:
 
     @staticmethod
     def _retrieveStation(_stationId: int):
-        return requests.get(f'https://api.publibike.ch/v1/public/stations/{_stationId}').json()
+        return requests.get(f'{API_BASE_URL}{_stationId}').json()
 
     def refresh(self):
         response = self._retrieveStation(self._stationId)

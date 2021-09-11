@@ -1,4 +1,6 @@
 
+API_BASE_URL = "https://api.publibike.ch/v1/public/stations/"
+
 class Constants():
     ID = "id"
     STATE = "state"
